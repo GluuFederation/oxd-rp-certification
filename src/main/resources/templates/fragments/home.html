@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://v4-alpha.getbootstrap.com/examples/jumbotron/ -->
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en"
+      layout:decorator="layout" th:with="currentPage='home'">
+
+<body>
+<div layout:fragment="content">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <!-- 
+    <div class="jumbotron">
+        <div th:unless="${isLoggedIn}" class="container">
+            <h3 class="display-4">OIDC RP Certification Application</h3>
+            <p>This is a  project that runs specific tests against an OIDC OP server via the OXD library.</p>
+        </div>
+        <div th:if="${isLoggedIn}" class="container">
+            <h1 class="display-4" style="text-align: center;">
+                Welcome <span th:text="${user.getClaims().get('name')} ? ${user.getClaims().get('name').get(0)}"></span>!
+            </h1>
+        </div>
+    </div>
+-->
+    <br/><br/>
+    <div class="container" th:unless="${isLoggedIn}">
+        <div class="row">
+	        <div class="col-md-8 col-md-offset-2">
+	        	<b><span th:text="${oxdId}"></span></b><br/><br/>
+	        </div>
+        </div>
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="input-group">
+                    <h4>Basic Profile</h4> 
+                    <!--  <input
+                        type="text" class="form-control" th:value="${oxdId}"
+                        style="text-align: center;" readonly=""/> <span
+                        class="input-group-btn"> <a class="btn btn-primary"
+                                                    type="button" th:href="${authorizationUrl}">Login with Gluu »</a>
+						</span>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div  class="col-md-8 col-md-offset-2">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Test ID</th>
+            <th>Description</th>
+            <th>Info</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>rp-response_type-code</td>
+            <td>Make an authentication request using the Authorization Code Flow.</td>
+            <td>An authentication response containing an authorization code.</td>
+            <td><a class="btn btn-primary" type="button" th:href="${authorizationUrl}">Test</a></td>
+        </tr>
+       
+    </tbody>
+</table> 
+</div>
+        </div>        
+    </div>
+    
+</div>
+
+</body>
+</html>
