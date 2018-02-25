@@ -24,7 +24,7 @@ public class Settings {
 
     @Value("${oxd.client.post-logout-uri}")
     private String postLogoutUrl;
-
+     
     @Inject
     private OxdService oxdService;
 
@@ -57,4 +57,16 @@ public class Settings {
         appSettings.setOpHost(opHost);
         appSettingsRepository.save(appSettings);
     }
+
+	public String getOpHost() {
+		return opHost;
+	}
+
+	public String getCallbackUrl() {
+		return callbackUrl;
+	}
+
+	public String getPostLogoutUrl() {
+		return postLogoutUrl;
+	}  
 }

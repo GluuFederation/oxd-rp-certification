@@ -35,6 +35,9 @@ public class OxdServiceImpl implements OxdService {
     @Value("${oxd.server.port}")
     private int port;
 
+    @Value("${oxd.server.email}")
+    private String email;
+    
     private CommandClient client;
 
     @PostConstruct
@@ -62,7 +65,7 @@ public class OxdServiceImpl implements OxdService {
         commandParams.setScope(Arrays.asList(scopes.split(",")));
         commandParams.setGrantType(Arrays.asList("authorization_code"));
         commandParams.setResponseTypes(Arrays.asList("code"));
-        commandParams.setContacts(Arrays.asList("vnikolaou12@gmail.com"));
+        commandParams.setContacts(Arrays.asList(email));
         
         final Command command = new Command(CommandType.REGISTER_SITE).setParamsObject(commandParams);
 
