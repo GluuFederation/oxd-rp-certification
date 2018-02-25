@@ -51,7 +51,7 @@ If everything is correct you will see a list of tests that are mandatory for cer
 
 For every test, you can click on its "Test" button in order to trigger the relevant process in the backend. The outcome of the process should be a set of log statements that will appear into your oxd.log file. This file along with potentially a few images that need to be taken manually on your browser will be the information that will be sent to the OIDC for claiming the compliance against all tests.
 
-For more information about how to run the tests, collect the necessary information, and organize the final deliverable, please read the [doc/cert.doc](doc/cert.doc) file.
+For more information about how to run the tests, collect the necessary information, and organize the final deliverable, please read the [cert.doc](https://github.com/GluuFederation/oxd-rp-certification/tree/master/doc/cert.doc) file.
 
 Finally for more information about the RP certification refer to the official site at: 
 [http://openid.net/certification/rp_testing/](http://openid.net/certification/rp_testing/)
