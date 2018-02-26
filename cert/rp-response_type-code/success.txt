@@ -1,0 +1,26 @@
+2018-02-26 00:53:10.729  INFO 13408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/app-error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-02-26 00:53:10.878  INFO 13408 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-02-26 00:53:10.881  INFO 13408 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-02-26 00:53:11.003  INFO 13408 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-02-26 00:53:12.514  INFO 13408 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-02-26 00:53:12.584  INFO 13408 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-02-26 00:53:13.890  INFO 13408 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8443 (https)
+2018-02-26 00:53:13.910  INFO 13408 --- [main] o.x.o.oidc.rp.cert.OxdSpringApplication  : Started OxdSpringApplication in 18.178 seconds (JVM running for 26.67)
+2018-02-26 00:53:30.510  INFO 13408 --- [https-jsse-nio-8443-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-02-26 00:53:30.511  INFO 13408 --- [https-jsse-nio-8443-exec-6] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-02-26 00:53:30.584  INFO 13408 --- [https-jsse-nio-8443-exec-6] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 69 ms
+2018-02-26 00:53:41.011 DEBUG 13408 --- [https-jsse-nio-8443-exec-11] o.x.oxd.oidc.rp.cert.web.GluuController  : 
+Receive Authorization Code
+================================
+Callback URI: https://127.0.0.1:8443/gluu/callback
+
+Request parameters:
+---------------------------------
+state=7euj609di6a8h5chaee43loo69
+code=Z0FBQUFBQmFrejU3X2txdHJEVUQ0MU1VZW05T1dmOGJabkFGWEJyclJNRTVybWxiam54X0VrZEs4YnM1a2FUaVRaYkdObXl3Ui1BT3NrR0kyd2t5bUNZQl9pRTd2aGhEcF8wYkhsSlY3WUtwTlFVTDVlZ2NTOGVvdEluOS1FTVNKR0lRcjBDcFZMQ0tLSkUyVEVTaWNXcVZtRXdncnJRZVBDLVQtSl9UN09ySVMtSmZzMS0teWZHZkw2WU9ZUExSdWVxR2YxdXVzdE94WEdlaWxuVHRkemNKS0lVYXcyempxVUdweVdOanlIR1hwS3g3RmR6cGN3bz0=
+scope=openid profile
+client_id=H7ShtR2VSxTO
+iss=https://rp.certification.openid.net:8080/gluu/rp-response_type-code
+2018-02-26 01:08:33.472  INFO 13408 --- [Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@92dcf13: startup date [Mon Feb 26 00:52:57 EET 2018]; root of context hierarchy
+2018-02-26 01:08:33.485  INFO 13408 --- [Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-02-26 01:08:33.507  INFO 13408 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
