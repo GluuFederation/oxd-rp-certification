@@ -1,0 +1,6 @@
+2018-02-26 22:06:58,467 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0229, commandSize: 229
+2018-02-26 22:06:58,467 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_authorization_url","params":{"prompt":null,"scope":["openid","profile"],"oxd_id":"740b7e07-9e49-45f5-88c9-0456638c3621","acr_values":["PASSWORD"],"hd":null,"protection_access_token":null,"custom_parameters":null}}', m_leftString=''}
+2018-02-26 22:06:58,468 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_authorization_url","params":{"prompt":null,"scope":["openid","profile"],"oxd_id":"740b7e07-9e49-45f5-88c9-0456638c3621","acr_values":["PASSWORD"],"hd":null,"protection_access_token":null,"custom_parameters":null}}
+2018-02-26 22:06:58,471 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"authorization_url":"https://rp.certification.openid.net:8080/gluu/rp-response_type-code/authorization?response_type=code&client_id=H7ShtR2VSxTO&redirect_uri=https://127.0.0.1:8443/gluu/callback&scope=openid+profile&state=plsqr1vmaut28ah2lloas94cm8&nonce=3596dtg350ijpqrdpcs8lu2vf3&acr_values=PASSWORD"}}
+2018-02-26 22:06:58,471 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2018-02-26 22:06:58,472 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 

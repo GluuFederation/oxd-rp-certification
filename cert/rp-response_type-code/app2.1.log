@@ -1,0 +1,12 @@
+2018-02-26 22:06:58.438 DEBUG 7920 --- [nio-8443-exec-8] o.x.oxd.oidc.rp.cert.web.GluuController  : 
+Receive Authorization Code
+================================
+Callback URI: https://127.0.0.1:8443/gluu/callback
+
+Request parameters:
+---------------------------------
+state=cronhd1er6ftil2pikqr8ihev3
+code=Z0FBQUFBQmFsR2pwX0s1QlNrVmlPTkhEaXFMUzYyZ1VIQ0VQRlY1YWpYRkphLV9scmVQRTk2VVJLa3NPc1NQLThHT3dEMDJFSUtLNVdwQTVvMEw0N1hUckNNanhkYkJ2OFFvZldvTlFHTVA5QWJLUHdDNnZOUW85LS1qak5Dal8wM3ZTSXRUeTlEZjk0ZTZ5M2VFWjJWV1ViV0o3MGM0dnNYbXd0VFJUaXhEbnNLSWxmTDFkYmV6dG9oblNmLVJYeWdKeGtXNkYyaVRyVm1YZndiZ29zLWhlNjlXS3dUaEktRWpkOW83UWZScnc5SS1IMmRvYXZnST0=
+scope=openid profile
+client_id=H7ShtR2VSxTO
+iss=https://rp.certification.openid.net:8080/gluu/rp-response_type-code

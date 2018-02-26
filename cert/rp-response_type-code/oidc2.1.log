@@ -1,0 +1,27 @@
+1519675625.204 init ========== Test tool version:1.0.9 ==========
+1519675625.204 http request {
+    "endpoint": "/gluu/rp-response_type-code/authorization",
+    "method": "GET"
+}
+1519675625.205 request {
+    "name": "AuthorizationRequest",
+    "path": "https://rp.certification.openid.net:8080/gluu/rp-response_type-code/authorization/"
+}
+1519675625.205 request {'state': 'cronhd1er6ftil2pikqr8ihev3', 'response_type': 'code', 'acr_values': 'PASSWORD', 'scope': 'openid profile', 'redirect_uri': 'https://127.0.0.1:8443/gluu/callback', 'nonce': '8kiavd7cbml5cao5obgchj6po2', 'client_id': 'H7ShtR2VSxTO'}
+1519675625.205 AuthorizationRequest {
+    "acr_values": "PASSWORD",
+    "client_id": "H7ShtR2VSxTO",
+    "nonce": "8kiavd7cbml5cao5obgchj6po2",
+    "redirect_uri": "https://127.0.0.1:8443/gluu/callback",
+    "response_type": "code",
+    "scope": "openid profile",
+    "state": "cronhd1er6ftil2pikqr8ihev3"
+}
+1519675625.208 AuthorizationResponse {
+    "client_id": "H7ShtR2VSxTO",
+    "code": "Z0FBQUFBQmFsR2pwX0s1QlNrVmlPTkhEaXFMUzYyZ1VIQ0VQRlY1YWpYRkphLV9scmVQRTk2VVJLa3NPc1NQLThHT3dEMDJFSUtLNVdwQTVvMEw0N1hUckNNanhkYkJ2OFFvZldvTlFHTVA5QWJLUHdDNnZOUW85LS1qak5Dal8wM3ZTSXRUeTlEZjk0ZTZ5M2VFWjJWV1ViV0o3MGM0dnNYbXd0VFJUaXhEbnNLSWxmTDFkYmV6dG9oblNmLVJYeWdKeGtXNkYyaVRyVm1YZndiZ29zLWhlNjlXS3dUaEktRWpkOW83UWZScnc5SS1IMmRvYXZnST0=",
+    "iss": "https://rp.certification.openid.net:8080/gluu/rp-response_type-code",
+    "scope": "openid profile",
+    "state": "cronhd1er6ftil2pikqr8ihev3"
+}
+1519675625.208 redirect https://127.0.0.1:8443/gluu/callback?state=cronhd1er6ftil2pikqr8ihev3&code=Z0FBQUFBQmFsR2pwX0s1QlNrVmlPTkhEaXFMUzYyZ1VIQ0VQRlY1YWpYRkphLV9scmVQRTk2VVJLa3NPc1NQLThHT3dEMDJFSUtLNVdwQTVvMEw0N1hUckNNanhkYkJ2OFFvZldvTlFHTVA5QWJLUHdDNnZOUW85LS1qak5Dal8wM3ZTSXRUeTlEZjk0ZTZ5M2VFWjJWV1ViV0o3MGM0dnNYbXd0VFJUaXhEbnNLSWxmTDFkYmV6dG9oblNmLVJYeWdKeGtXNkYyaVRyVm1YZndiZ29zLWhlNjlXS3dUaEktRWpkOW83UWZScnc5SS1IMmRvYXZnST0%3D&scope=openid+profile&client_id=H7ShtR2VSxTO&iss=https%3A%2F%2Frp.certification.openid.net%3A8080%2Fgluu%2Frp-response_type-code
