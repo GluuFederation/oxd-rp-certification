@@ -64,7 +64,7 @@ public class ApplicationController {
         if (!isLoggedIn())
             return null;
         GluuUser user = getUser();
-        return Optional.of(oxdService).map(c -> c.getLogoutUrl(settings.getOxdId(), user.getIdToken()))
+        return Optional.of(oxdService).map(c -> c.getLogoutUrl(settings.getAppSettings().getOxdId(), user.getIdToken()))
                 .map(c -> c.dataAsResponse(LogoutResponse.class)).map(LogoutResponse::getUri).orElse(null);
     }
 
@@ -73,13 +73,13 @@ public class ApplicationController {
         if (isLoggedIn())
             return null;
 
-        return Optional.of(oxdService).map(c -> c.getAuthorizationUrl(settings.getOxdId()))
+        return Optional.of(oxdService).map(c -> c.getAuthorizationUrl(settings.getAppSettings().getOxdId()))
                 .map(c -> c.dataAsResponse(GetAuthorizationUrlResponse.class))
                 .map(GetAuthorizationUrlResponse::getAuthorizationUrl).orElse(null);
     }
 
     @ModelAttribute("oxdId")
     public String getOxdId() {
-        return settings.getOxdId();
+        return settings.getAppSettings().getOxdId();
     }
 }

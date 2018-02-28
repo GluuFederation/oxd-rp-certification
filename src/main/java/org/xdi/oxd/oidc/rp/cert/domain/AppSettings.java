@@ -40,4 +40,11 @@ public class AppSettings {
     public void setOpHost(String opHost) {
         this.opHost = opHost;
     }
+
+	@Override
+	public String toString() {
+		return "AppSettings [id=" + id + ", oxdId=" + oxdId + ", opHost=" + opHost + "]";
+	}
+    
+    
 }

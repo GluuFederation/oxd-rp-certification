@@ -1,7 +1,5 @@
 package org.xdi.oxd.oidc.rp.cert.web;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -10,10 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -23,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.xdi.oxd.common.CommandResponse;
 import org.xdi.oxd.common.response.GetTokensByCodeResponse;
-import org.xdi.oxd.common.response.GetUserInfoResponse;
 import org.xdi.oxd.oidc.rp.cert.Settings;
-import org.xdi.oxd.oidc.rp.cert.security.AuthoritiesConstants;
-import org.xdi.oxd.oidc.rp.cert.security.GluuUser;
 import org.xdi.oxd.oidc.rp.cert.service.OxdService;
 
 @Controller
@@ -41,9 +34,8 @@ public class GluuController {
     @Inject
     private Settings settings;
     
-    @SuppressWarnings("unused")
 	@RequestMapping(path = "/callback", method = RequestMethod.GET)
-    public String receiveAuthorizationCode(
+    public String callback(
                            HttpServletRequest request,
                            RedirectAttributes redirectAttributes) {
     	StringBuilder sb = new StringBuilder();
@@ -56,9 +48,9 @@ public class GluuController {
     	
     	LOG.debug(sb.toString());
     	
-    	if(false) { // TODO: replace with an identifier that points to the relevant test
+    	if(!settings.getCurrentTestId().equals("rp-scope-userinfo-claims")) { // TODO: replace with an identifier that points to the relevant test
     		String code = request.getParameter("code");
-            String state = request.getParameter("code");
+            String state = request.getParameter("state");
             String error = request.getParameter("error");
             String errorDescription = request.getParameter("error_description");
             
@@ -68,11 +60,19 @@ public class GluuController {
 	            return "redirect:/error";
 	        }
 	
+	        CommandResponse cr = oxdService.getTokenByCode(settings.getAppSettings().getOxdId(), code,state);
+	        System.out.println("cr=" + cr);
+	      //  GetTokensByCodeResponse token = cr.dataAsResponse(GetTokensByCodeResponse.class);
+	     //   System.out.println(token);
+	        
+	        /*
 	        Optional<GetTokensByCodeResponse> tokenResponse = Optional.of(oxdService)
-	                .map(c -> c.getTokenByCode(settings.getOxdId(), code,state))
+	                .map(c -> c.getTokenByCode(settings.getAppSettings().getOxdId(), code,state))
 	                .map(c -> c.dataAsResponse(GetTokensByCodeResponse.class));
+	                */
+	        /*
 	        GetUserInfoResponse userInfoResponse = tokenResponse
-	                .map(c -> oxdService.getUserInfo(settings.getOxdId(), c.getAccessToken()))
+	                .map(c -> oxdService.getUserInfo(settings.getAppSettings().getOxdId(), c.getAccessToken()))
 	                .map(c -> c.dataAsResponse(GetUserInfoResponse.class))
 	                .orElseThrow(() -> new BadCredentialsException("Can't get user info"));
 	
@@ -82,14 +82,18 @@ public class GluuController {
 	        GluuUser user = new GluuUser(tokenResponse.get().getIdToken(), userInfoResponse.getClaims(), authorities);
 	        SecurityContextHolder.getContext()
 	                .setAuthentication(new UsernamePasswordAuthenticationToken(user, "", authorities));
+	                */
     	}
     	
         return "redirect:/home";
     }
 
+    
     @RequestMapping(path = "/tests/{id}", method = RequestMethod.POST)
-    public @ResponseBody String setTestId(@PathVariable("id") String testId) {
+    public @ResponseBody String runTest(@PathVariable("id") String testId) {
         System.out.println("testID=" + testId);
+        //settings.setCurrentTestId(testId);
+        oxdService.registerSite(testId);
         return testId;
     }
     
