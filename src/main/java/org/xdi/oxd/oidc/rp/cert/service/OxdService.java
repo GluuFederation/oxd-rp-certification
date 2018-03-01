@@ -4,8 +4,8 @@ import org.xdi.oxd.common.CommandResponse;
 import org.xdi.oxd.oidc.rp.cert.domain.AppSettings;
 
 public interface OxdService {
-
-    //CommandResponse registerSite(String redirectUrl, String postLogoutRedirectUrl);
+	AppSettings getAppSettings();
+	
 	AppSettings registerSite(String testId);
     
     CommandResponse updateSite(String oxdId, String redirectUrl);

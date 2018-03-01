@@ -5,13 +5,10 @@ import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.xdi.oxd.client.CommandClient;
 import org.xdi.oxd.common.Command;
@@ -25,7 +22,7 @@ import org.xdi.oxd.common.params.GetUserInfoParams;
 import org.xdi.oxd.common.params.RegisterSiteParams;
 import org.xdi.oxd.common.params.UpdateSiteParams;
 import org.xdi.oxd.common.response.RegisterSiteResponse;
-import org.xdi.oxd.oidc.rp.cert.Settings;
+import org.xdi.oxd.oidc.rp.cert.ConfigProperties;
 import org.xdi.oxd.oidc.rp.cert.domain.AppSettings;
 import org.xdi.oxd.oidc.rp.cert.repository.AppSettingsRepository;
 
@@ -34,7 +31,7 @@ public class OxdServiceImpl implements OxdService {
     private static final Logger logger = LoggerFactory.getLogger(OxdServiceImpl.class);
 
     @Autowired
-    private Settings settings;
+    private ConfigProperties settings;
     
     @Autowired
     private AppSettingsRepository appSettingsRepository;
@@ -56,25 +53,21 @@ public class OxdServiceImpl implements OxdService {
         CommandClient.closeQuietly(client);
     }
     
-    @EventListener({ContextRefreshedEvent.class})
-    private void onContextStarted() {
-    	settings.setAppSettings(registerSite(settings.getCurrentTestId()));
-    	System.out.println("0.this.appSettings=" + settings.getAppSettings());
-    }
+	@Override
+	public AppSettings getAppSettings() {
+		return appSettingsRepository.findOneByOpHost(settings.getOpHost());
+	}    
     
     public AppSettings registerSite(String testId) {
-        AppSettings appSettings = appSettingsRepository.findOneByOpHost(settings.getOpHost());
+        AppSettings appSettings = getAppSettings();
+        
         System.out.println("OxdServiceImpl::getting appSettings=" + appSettings);
         if (appSettings != null) {
         	System.out.println("OxdServiceImpl::deleting appSettings=" + appSettings);
         	appSettingsRepository.delete(appSettings); 
         }
 
-        settings.setCurrentTestId(testId);
-        
-        System.out.println("settings=" + settings);
-        /// from old register
-        final RegisterSiteParams commandParams = new RegisterSiteParams();
+        RegisterSiteParams commandParams = new RegisterSiteParams();
         commandParams.setOpHost(settings.getOpHost() + testId);
         commandParams.setAuthorizationRedirectUri(settings.getCallbackUrl());
         commandParams.setPostLogoutRedirectUri(settings.getPostLogoutUrl());
@@ -88,8 +81,7 @@ public class OxdServiceImpl implements OxdService {
         final Command command = new Command(CommandType.REGISTER_SITE).setParamsObject(commandParams);
 
         CommandResponse commandResponse = client.send(command);
-        /// end from old register
-        
+
         if (commandResponse.getStatus().equals(ResponseStatus.ERROR))
             throw new RuntimeException("Can not register site: {callbackUrl: '" + settings.getCallbackUrl() + 
             		"', postLogoutUrl: '" + settings.getPostLogoutUrl() + "'}. Plese see the oxd-server.log");
@@ -100,6 +92,7 @@ public class OxdServiceImpl implements OxdService {
         appSettings = new AppSettings();
         appSettings.setOxdId(oxdId);
         appSettings.setOpHost(settings.getOpHost());
+        appSettings.setTestId(testId);
         appSettingsRepository.save(appSettings);    
         
         return appSettings;
@@ -158,4 +151,6 @@ public class OxdServiceImpl implements OxdService {
 
         return client.send(command);
     }
+
+
 }

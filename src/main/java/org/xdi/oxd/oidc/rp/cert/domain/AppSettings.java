@@ -7,16 +7,19 @@ import javax.persistence.Id;
 
 @Entity
 public class AppSettings {
-
     @Id
     @GeneratedValue
     private Integer id;
 
+    @Column   
     private String oxdId;
 
     @Column(unique = true)
     private String opHost;
 
+    @Column
+    private String testId;
+    
     public Integer getId() {
         return id;
     }
@@ -40,11 +43,18 @@ public class AppSettings {
     public void setOpHost(String opHost) {
         this.opHost = opHost;
     }
+    
+	public String getTestId() {
+		return testId;
+	}
+
+	public void setTestId(String testId) {
+		this.testId = testId;
+	}
 
 	@Override
 	public String toString() {
-		return "AppSettings [id=" + id + ", oxdId=" + oxdId + ", opHost=" + opHost + "]";
+		return "AppSettings [id=" + id + ", oxdId=" + oxdId + ", opHost=" + opHost + ", testId=" + testId + "]";
 	}
-    
-    
+
 }

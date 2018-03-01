@@ -2,12 +2,9 @@ package org.xdi.oxd.oidc.rp.cert;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.xdi.oxd.oidc.rp.cert.domain.AppSettings;
 
 @Component
-public class Settings {
-	private final static String DEFAULT_TEST_ID = "rp-response_type-code/";
-	
+public class ConfigProperties {
     @Value("${oxd.server.op-host}")
     private String opHost;
     @Value("${oxd.client.callback-uri}")
@@ -25,9 +22,6 @@ public class Settings {
     private int port;
     @Value("${oxd.server.email}")
     private String email;
-    
-    private AppSettings appSettings;
-    private String currentTestId = DEFAULT_TEST_ID;
     
 	public String getOpHost() {
 		return opHost;
@@ -61,28 +55,10 @@ public class Settings {
 		return email;
 	}
 
-	public AppSettings getAppSettings() {
-		return appSettings;
-	}
-
-	public void setAppSettings(AppSettings appSettings) {
-		this.appSettings = appSettings;
-	}
-
-	public String getCurrentTestId() {
-		return currentTestId;
-	}
-
-	public void setCurrentTestId(String currentTestId) {
-		this.currentTestId = currentTestId;
-	}
-
 	@Override
 	public String toString() {
 		return "Settings [opHost=" + opHost + ", callbackUrl=" + callbackUrl + ", postLogoutUrl=" + postLogoutUrl
 				+ ", scopes=" + scopes + ", acrValues=" + acrValues + ", host=" + host + ", port=" + port + ", email="
-				+ email + ", currentTestId=" + currentTestId + "]";
-	}	
-	
-	
+				+ email + "]";
+	}
 }
