@@ -5,8 +5,69 @@ This project provides a simple web application which can be used in certifying t
 - Java (1.8+)
 - Maven (3.0.4+)
 - Git (2.5.1+)
+- Docker (18.0.0+)
+- Docker Compose (1.18.0+)
 
-# Installing
+# Setting up the OIDC RP server
+Download or clone the project from github:
+
+````
+https://github.com/bhammond604/oidctest.git   (NOTE: the forked modified version)
+````
+
+Open the following file:
+
+````
+/oidctest/docker/rp_test/conf.py
+````
+
+Set the baseurl property so as it points to a normal FQDN value. For example:
+
+````
+baseurl = "https://vnik2.gluu.info"    (TIP: set the FQDN as an alias into /etc/hosts file by pointing to the local IP)
+````
+
+Save the file, move to the root folder (oidctest) and type:
+
+````
+docker-compose -f docker/docker-compose.yml up   (NOTE: you may need to use the root user)
+````
+
+When the the process of starting up the containers is completed, open another terminal and type:
+
+````
+docker container ls
+````
+
+The docker will show a list with the running containers including the one for the rp_test server. Copy its container_id (in the leftmost column) and type:
+
+````
+docker exec -it <container_id> /bin/bash
+````
+
+With this command you login the linux in the running container via it bash interface. Now you have access to the internal files and especially to the log files. We are interested in these types of logs:
+
+1. /log:  This directory keeps the log files that contain information about the tests we run. They are the files that we collect in order to claim the certification (NOTE: the files are categorized by client_id like gluu)
+2. rp_test.log: This file is the rp_test server's log file. It contains information during startup, and any other messages that are logged by the server's code itself or even exceptions
+
+To make sure that the RP server is running, open a browser and type:
+
+````
+http://localhost:8080   (TIP: ignore the warning for the SSL and proceed)
+````
+
+If everything was successful, you will see the home page of the server where you can choose what type of tests you want to perform.
+
+# Setting up the OXD
+Download and install the OXD version you want locally and as described at:
+
+````
+https://gluu.org/docs/oxd/
+````
+
+Start the OXD server as mentioned in the documentation. If you accept the default configuration, then the server is running in 8099 port.
+
+# Installing the Web app
 Download or clone the project from github:
 
 ````
@@ -30,6 +91,8 @@ logging.file= ~/oxd/oxd.log   (or provide your location)
 oxd.server.host=localhost      (OXD server's host)
 oxd.server.port=8099           (OXD server's port)
 oxd.server.email=<your_email>  (an email address)
+
+oxd.server.op-host=<the RP server's URL>/gluu   (the FQDN that you had set in conf.py file. For example: https://vnik2.gluu.info:8080/gluu/)
 ````
 
 Given that your OXD server is already installed and running, execute:
