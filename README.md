@@ -53,7 +53,7 @@ With this command you login the linux in the running container via it bash inter
 To make sure that the RP server is running, open a browser and type:
 
 ````
-http://localhost:8080   (TIP: ignore the warning for the SSL and proceed)
+https://localhost:8080   (TIP: ignore the warning for the SSL and proceed)
 ````
 
 If everything was successful, you will see the home page of the server where you can choose what type of tests you want to perform.
